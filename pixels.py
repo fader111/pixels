@@ -3,6 +3,8 @@
 
 import cv2
 import numpy as np
+from config import *
+from misc import *
 
 pic_folder ="C:\\Users\\5010858\\Downloads\\Telegram Desktop\\" 
 
@@ -14,6 +16,8 @@ path_l = [  "ola2.jpg",
             "ataranov.jpg"                              # 5
         ]
 path = pic_folder + path_l[5]
+path = r"C:\Users\Anton\Pictures\IMG_20210908_163738.jpg"
+
 scale = 7           # чем меньше тем больше пикселов и качесвеннее итоговая картинка 
 color_steps = 5     # шаг цвета чем больше тем качественнее
 pic_size = (2,40) # не рабоатает эта херня. 
@@ -52,10 +56,13 @@ def pixelize(img, steps_ = 8):
 
 if __name__ == "__main__":
     pic = cv2.imread(path, 0)
+    pic = resizeAndPad(pic, pic_size_)
     #cv2.resize(pic, pic_size, pic) # здесь это не работает - см цикл while ниже
     pic2 = cv2.imread(path, 0)
+    pic2 = resizeAndPad(pic2, pic_size_)
     #cv2.resize(pic2,  pic_size, pic2)
     pic2_ = cv2.imread(path, 0)
+    pic2_ = resizeAndPad(pic2_, pic_size_)
     #cv2.resize(pic2_, pic_size, pic2_)
     
     cv2.imshow("image", pic)
@@ -73,7 +80,7 @@ if __name__ == "__main__":
     #cv2.imshow(f"Scale {scale} quant color {color_steps} size {dims}   tot pix = {tot_pix}  pix set{pix_by_steps}", pic2)
     while (True):
 
-        pic = cv2.imread(path, 0)
+        # pic = cv2.imread(path, 0)
         #pic2 = cv2.imread(path, 0)
         #pic2_ = cv2.imread(path, 0)
         cv2.imshow("Esc - Exit", pic)

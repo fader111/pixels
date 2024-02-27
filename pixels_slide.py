@@ -16,6 +16,12 @@ def pixeller(img, pixel_size=5):
     blocks = np.mean(img.reshape(
         h//pixel_size, pixel_size, -1, pixel_size, c), axis=(1, 3))
     # Repeat average color of each block to fill corresponding region in the image
+    # blocks[:,:,1] = 10
+    # blocks[:,:,0] = 5
+    # blocks[:,:,2] = 50
+
+    print (f"blocks len{len(blocks)} \nshape - {blocks.shape} \n blocks \n\n{blocks[:,:,:]}")
+
     output = np.repeat(np.repeat(blocks, pixel_size,
                        axis=1), pixel_size, axis=0)
     # Remove padding
@@ -46,13 +52,14 @@ path_l = [
     "ataranov.jpg"  # 5
 ]
 path_ = pic_folder + path_l[2]
-path_ = r"C:\Users\Anton\Pictures\IMG_20210908_163738.jpg"
+path_ = r"C:\Users\Anton\Pictures\IMG_20210908_163738.png"
 
 if __name__ == '__main__':
-    img = cv2.imread(path_)
+    img = cv2.imread(path_)#,0)
+    # img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
     img = resizeAndPad(img, pic_size_)
     # img = cv2.resize(img, (300, 300))
-    pixel_size = 5
+    pixel_size = 50
 
     pixelized = pixeller(img, pixel_size=pixel_size)
 
