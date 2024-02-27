@@ -1,9 +1,10 @@
 import cv2
 import numpy as np
+from config import *
+from misc import *
 
 
 def pixeller(img, pixel_size=5):
-
     pixel_size = pixel_size if pixel_size > 0 else 1
     height, width, channels = img.shape
     # Pad image
@@ -24,7 +25,15 @@ def pixeller(img, pixel_size=5):
 def on_trackbar_change(value):
     pixel_size = cv2.getTrackbarPos('Pixel Size', 'Pixelizer')
     pixelized = pixeller(img, pixel_size=pixel_size)
+    pixel_size = pixel_size if pixel_size > 0 else 1
+    _,_ = get_pixels_num(img, pixel_size)
     cv2.imshow('Pixelizer', pixelized)
+
+
+def get_pixels_num(img, pixel_size):
+    pixels_num_w, pixels_num_h = round(pic_size_[0]/pixel_size), round(pic_size_[1]/pixel_size)
+    print (f"pixels_num_w, pixels_num_h {pixels_num_w, pixels_num_h} tot number - {pixels_num_w * pixels_num_h}")
+    return pixels_num_w, pixels_num_h
 
 
 pic_folder = "C:\\Users\\5010858\\Downloads\\Telegram Desktop\\"
@@ -37,10 +46,14 @@ path_l = [
     "ataranov.jpg"  # 5
 ]
 path_ = pic_folder + path_l[2]
+path_ = r"C:\Users\Anton\Pictures\IMG_20210908_163738.jpg"
 
 if __name__ == '__main__':
     img = cv2.imread(path_)
+    img = resizeAndPad(img, pic_size_)
+    # img = cv2.resize(img, (300, 300))
     pixel_size = 5
+
     pixelized = pixeller(img, pixel_size=pixel_size)
 
     cv2.namedWindow('Pixelizer')
