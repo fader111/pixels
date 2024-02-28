@@ -1,7 +1,30 @@
 import cv2
 import numpy as np
-from config import *
+# from config import *
 from misc import *
+import yaml
+
+# Загрузка конфигурации из YAML-файла
+with open('config.yaml') as file:
+    config = yaml.safe_load(file)
+
+pic_size_ = config['pic_size']
+pic_width = config['pic_width']
+pic_height = config['pic_height']
+subst_colors_set = config['colors_set'] 
+pixel_size = config['pixel_size']
+
+def nearest_color_calc(orig_color, subst_color, subst_colors_set): 
+    subst_color = orig_color
+    return subst_color
+
+
+def colors_fitting(blocks): 
+    ''' берет блоки и заменяет цвета - в каждом блоке '''
+    # for color in
+    # cv2.imshow(blocks)
+    # cv2.waitKey(0) 
+    return blocks
 
 
 def pixeller(img, pixel_size=5):
@@ -19,6 +42,7 @@ def pixeller(img, pixel_size=5):
     # blocks[:,:,1] = 10
     # blocks[:,:,0] = 5
     # blocks[:,:,2] = 50
+    blocks = colors_fitting(blocks)
 
     print (f"blocks len{len(blocks)} \nshape - {blocks.shape} \n blocks \n\n{blocks[:,:,:]}")
 
@@ -59,7 +83,7 @@ if __name__ == '__main__':
     # img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
     img = resizeAndPad(img, pic_size_)
     # img = cv2.resize(img, (300, 300))
-    pixel_size = 50
+    # pixel_size = 50
 
     pixelized = pixeller(img, pixel_size=pixel_size)
 

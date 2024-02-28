@@ -1,0 +1,8 @@
+# config.yaml
+pic_size: [600, 600]
+pic_width: 600
+pic_height: 600
+pixel_size: 1
+colors_set:
+  light_red: [100, 30, 30]
+  cyan: [60, 200, 30]
