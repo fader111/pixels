@@ -7,9 +7,9 @@ import yaml
 with open('config.yaml') as file:
     config = yaml.safe_load(file)
 
-pic_size_ = config['pic_size']
-pic_width = config['pic_width']
-pic_height = config['pic_height']
+img_size = config['pic_size']
+# pic_width = config['pic_width']
+# pic_height = config['pic_height']
 custom_colors = config['custom_colors_large'] 
 pixel_size = config['pixel_size']
 
@@ -59,8 +59,8 @@ def pixeller(img, pixel_size=5, min_pixel_size=3):
     return output[:height, :width].astype("uint8")
 
 
-def get_pixels_num(img, pixel_size):
-    pixels_num_w, pixels_num_h = pic_size_[0]//pixel_size, pic_size_[1]//pixel_size
+def get_pixels_num(img_size, pixel_size):
+    pixels_num_w, pixels_num_h = img_size[0]//pixel_size, img_size[1]//pixel_size
     print (f"w/h pixels {pixels_num_w, pixels_num_h} tot -{pixels_num_w * pixels_num_h} pxl size -{pixel_size}" )
     return pixels_num_w, pixels_num_h
 
@@ -69,7 +69,7 @@ def on_trackbar_change(value):
     pixel_size = cv2.getTrackbarPos('Pixel Size', 'Pixelizer')
     pixel_size = pixel_size if pixel_size > 3 else 3
     pixelized = pixeller(img, pixel_size=pixel_size)
-    _,_ = get_pixels_num(img, pixel_size)
+    _,_ = get_pixels_num(img_size, pixel_size)
     cv2.imshow('Pixelizer', pixelized)
 
 
@@ -92,7 +92,7 @@ if __name__ == '__main__':
     else:
         img = cv2.imread(path_,0)
         img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
-    img = resizeAndPad(img, pic_size_)
+    img = resizeAndPad(img, img_size)
     # img = cv2.resize(img, (300, 300))
 
     pixelized = pixeller(img, pixel_size=pixel_size)
