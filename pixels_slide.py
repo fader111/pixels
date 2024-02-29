@@ -94,6 +94,10 @@ if __name__ == '__main__':
         img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
     img = resizeAndPad(img, img_size)
     # img = cv2.resize(img, (300, 300))
+    # коррекция контрастрности и яркости
+    alpha = 1 # Contrast control (1.0-3.0)
+    beta = 0 # Brightness control (0-100)
+    img = cv2.convertScaleAbs(img, alpha=alpha, beta=beta)
 
     pixelized = pixeller(img, pixel_size=pixel_size)
 
