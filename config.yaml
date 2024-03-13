@@ -3,7 +3,7 @@ pic_size: [600, 600]
 pic_width: 600
 pic_height: 600
 color_mode: 1
-quanted_colors_num: 9
+quanted_colors_num: 10
 pixel_size: 5
 contrast: 0
 

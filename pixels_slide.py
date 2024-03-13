@@ -27,15 +27,17 @@ pic_folder = "C:\\Users\\5010858\\Downloads\\Telegram Desktop\\"
 path_l = [
     "ola2.jpg",
     "ola.jpg",
+    "photo_2024-03-01_20-53-25.jpg", 
     "ola2-removebg-preview.png",
     "photo_2021-10-08_16-10-06.jpg",
+    "IMG_20230723_140643.jpg", # 5
     "2_5226645942744125784.jpg",  # с гирляндой
-    "ataranov.jpg"  # 5
+    "ataranov.jpg"  # 7
 ]
-path_ = pic_folder + path_l[2]
-path_ = r"C:\Users\Anton\Pictures\IMG_20210908_163738.png"
+path_ = pic_folder + path_l[5]
+# path_ = r"C:\Users\Anton\Pictures\IMG_20210908_163738.png"
 # path_ = r"C:\Users\Anton\Pictures\lpr1.png"
-# path_ = r"C:\Users\Anton\Projects\nextblog2\public\images\man_in_yard.jpg"
+path_ = r"C:\Users\Anton\Projects\nextblog2\public\images\man_in_yard.jpg"
 
 if __name__ == '__main__':
 
